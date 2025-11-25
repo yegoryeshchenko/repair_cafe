@@ -1,0 +1,70 @@
+{% extends 'devices/base.html' %}
+
+{% block title %}Print Label - {{ device.device_id }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="no-print" style="margin-bottom: 20px;">
+        <button onclick="window.print()" class="btn btn-primary">Print Label</button>
+        <a href="{% url 'dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+
+    <div class="print-label">
+        <h2>REPAIR CAFÉ</h2>
+
+        <div class="device-id-large">{{ device.device_id }}</div>
+
+        <div class="barcode-placeholder">
+            <svg width="250" height="60" xmlns="http://www.w3.org/2000/svg">
+                <!-- Simple barcode representation -->
+                <rect x="0" y="0" width="5" height="60" fill="black"/>
+                <rect x="10" y="0" width="3" height="60" fill="black"/>
+                <rect x="18" y="0" width="7" height="60" fill="black"/>
+                <rect x="30" y="0" width="3" height="60" fill="black"/>
+                <rect x="38" y="0" width="5" height="60" fill="black"/>
+                <rect x="48" y="0" width="8" height="60" fill="black"/>
+                <rect x="61" y="0" width="3" height="60" fill="black"/>
+                <rect x="69" y="0" width="5" height="60" fill="black"/>
+                <rect x="79" y="0" width="3" height="60" fill="black"/>
+                <rect x="87" y="0" width="7" height="60" fill="black"/>
+                <rect x="99" y="0" width="5" height="60" fill="black"/>
+                <rect x="109" y="0" width="3" height="60" fill="black"/>
+                <rect x="117" y="0" width="8" height="60" fill="black"/>
+                <rect x="130" y="0" width="3" height="60" fill="black"/>
+                <rect x="138" y="0" width="5" height="60" fill="black"/>
+                <rect x="148" y="0" width="7" height="60" fill="black"/>
+                <rect x="160" y="0" width="3" height="60" fill="black"/>
+                <rect x="168" y="0" width="5" height="60" fill="black"/>
+                <rect x="178" y="0" width="8" height="60" fill="black"/>
+                <rect x="191" y="0" width="3" height="60" fill="black"/>
+                <rect x="199" y="0" width="5" height="60" fill="black"/>
+                <rect x="209" y="0" width="3" height="60" fill="black"/>
+                <rect x="217" y="0" width="7" height="60" fill="black"/>
+                <rect x="229" y="0" width="5" height="60" fill="black"/>
+                <rect x="239" y="0" width="3" height="60" fill="black"/>
+                <text x="125" y="75" text-anchor="middle" font-size="12">{{ device.device_id }}</text>
+            </svg>
+        </div>
+
+        <div style="margin-top: 20px; text-align: left;">
+            <p><strong>Customer:</strong> {{ device.customer_name }}</p>
+            <p><strong>Phone:</strong> {{ device.phone_number }}</p>
+            <p><strong>Device:</strong> {{ device.device_type }}</p>
+            <p><strong>Brand/Model:</strong> {{ device.brand_model }}</p>
+            <p><strong>Intake:</strong> {{ device.intake_datetime|date:"Y-m-d H:i" }}</p>
+
+            {% if device.accessories %}
+            <div style="margin-top: 15px; padding: 10px; border: 2px solid #000; background-color: #ffffcc;">
+                <strong>⚠️ ACCESSORIES:</strong><br>
+                {{ device.accessories }}
+            </div>
+            {% endif %}
+        </div>
+
+        <div style="margin-top: 20px; font-size: 12px; color: #666;">
+            <p>Please attach this label to the device.</p>
+            <p>Keep items together to prevent loss.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

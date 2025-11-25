@@ -1,0 +1,82 @@
+{% extends 'devices/base.html' %}
+
+{% block title %}{{ device.device_id }} - Repair Café{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2 class="card-header">Device Details - {{ device.device_id }}</h2>
+            <span class="status-badge status-{{ device.status }}">{{ device.get_status_display }}</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px;">
+            <div>
+                <h3 style="color: #1f2937; margin-bottom: 15px;">Customer Information</h3>
+                <p><strong>Name:</strong> {{ device.customer_name }}</p>
+                <p><strong>Phone:</strong> {{ device.phone_number }}</p>
+                {% if device.email_address %}
+                <p><strong>Email:</strong> {{ device.email_address }}</p>
+                {% endif %}
+            </div>
+
+            <div>
+                <h3 style="color: #1f2937; margin-bottom: 15px;">Timeline</h3>
+                <p><strong>Intake Date:</strong> {{ device.intake_datetime|date:"Y-m-d H:i" }}</p>
+                {% if device.date_finished %}
+                <p><strong>Finished Date:</strong> {{ device.date_finished|date:"Y-m-d H:i" }}</p>
+                {% endif %}
+                <p><strong>Days in Repair:</strong> {{ device.days_in_repair }}</p>
+            </div>
+        </div>
+
+        <hr style="margin: 30px 0; border: none; border-top: 1px solid #e5e7eb;">
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+            <div>
+                <h3 style="color: #1f2937; margin-bottom: 15px;">Device Information</h3>
+                <p><strong>Device Type:</strong> {{ device.device_type }}</p>
+                <p><strong>Brand/Model:</strong> {{ device.brand_model }}</p>
+            </div>
+
+            <div>
+                <h3 style="color: #1f2937; margin-bottom: 15px;">Repair Information</h3>
+                {% if device.repairer_name %}
+                <p><strong>Repairer:</strong> {{ device.repairer_name }}</p>
+                {% else %}
+                <p><strong>Repairer:</strong> Not assigned</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <h3 style="color: #1f2937; margin-bottom: 10px;">Problem Description</h3>
+            <div style="padding: 15px; background-color: #f9fafb; border-radius: 4px; border: 1px solid #e5e7eb;">
+                {{ device.problem_description }}
+            </div>
+        </div>
+
+        {% if device.accessories %}
+        <div style="margin-top: 20px; padding: 15px; background-color: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 4px;">
+            <h3 style="color: #92400e; margin-bottom: 10px;">⚠️ Accessories</h3>
+            <p style="color: #92400e;">{{ device.accessories }}</p>
+        </div>
+        {% endif %}
+
+        {% if device.repair_notes %}
+        <div style="margin-top: 20px;">
+            <h3 style="color: #1f2937; margin-bottom: 10px;">Repair Notes</h3>
+            <div style="padding: 15px; background-color: #f9fafb; border-radius: 4px; border: 1px solid #e5e7eb;">
+                {{ device.repair_notes }}
+            </div>
+        </div>
+        {% endif %}
+
+        <div style="margin-top: 30px; display: flex; gap: 10px;">
+            <a href="{% url 'device_update' device.device_id %}" class="btn btn-primary">Update Device</a>
+            <a href="{% url 'print_label' device.device_id %}" class="btn btn-secondary">Print Label</a>
+            <a href="{% url 'dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
