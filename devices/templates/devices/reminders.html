@@ -1,0 +1,67 @@
+{% extends 'devices/base.html' %}
+
+{% block title %}Reminders - Repair Café{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <h2 class="card-header">Devices Needing Attention</h2>
+        <p style="color: #666; margin-bottom: 20px;">
+            Devices that have been in the system for more than 14 days and are not yet finished.
+        </p>
+
+        {% if devices %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Device ID</th>
+                    <th>Customer</th>
+                    <th>Phone</th>
+                    <th>Device</th>
+                    <th>Status</th>
+                    <th>Intake Date</th>
+                    <th>Days</th>
+                    <th>Accessories</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for device in devices %}
+                <tr>
+                    <td><strong>{{ device.device_id }}</strong></td>
+                    <td>{{ device.customer_name }}</td>
+                    <td>{{ device.phone_number }}</td>
+                    <td>
+                        {{ device.device_type }}<br>
+                        <small>{{ device.brand_model }}</small>
+                    </td>
+                    <td><span class="status-badge status-{{ device.status }}">{{ device.get_status_display }}</span></td>
+                    <td>{{ device.intake_datetime|date:"Y-m-d" }}</td>
+                    <td style="color: #ef4444; font-weight: bold;">{{ device.days_in_repair }}</td>
+                    <td>
+                        {% if device.accessories %}
+                        <span style="color: #f59e0b;">⚠️ Yes</span>
+                        {% else %}
+                        -
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'device_detail' device.device_id %}" class="btn btn-secondary">View</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div style="padding: 40px; text-align: center; color: #10b981;">
+            <p style="font-size: 1.2rem;">✓ No devices need attention at this time!</p>
+            <p>All devices are within the acceptable timeframe.</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <div style="margin-top: 20px;">
+        <a href="{% url 'dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+</div>
+{% endblock %}

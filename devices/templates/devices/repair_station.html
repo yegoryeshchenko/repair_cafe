@@ -1,0 +1,81 @@
+{% extends 'devices/base.html' %}
+
+{% block title %}Repair Station - Repair Café{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <h2 class="card-header">Repair Station</h2>
+
+        <form method="get" action="{% url 'repair_station' %}">
+            <div class="search-bar">
+                {{ form.device_id }}
+                <button type="submit" class="btn btn-primary">Search / Scan</button>
+            </div>
+        </form>
+    </div>
+
+    {% if device %}
+    <div class="card">
+        <h3 class="card-header">Device Information</h3>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div>
+                <p><strong>Device ID:</strong> <span style="font-size: 1.5rem; color: #2563eb;">{{ device.device_id }}</span></p>
+                <p><strong>Status:</strong> <span class="status-badge status-{{ device.status }}">{{ device.get_status_display }}</span></p>
+                <p><strong>Intake Date:</strong> {{ device.intake_datetime|date:"Y-m-d H:i" }}</p>
+                <p><strong>Days in repair:</strong> {{ device.days_in_repair }}</p>
+            </div>
+            <div>
+                <p><strong>Customer:</strong> {{ device.customer_name }}</p>
+                <p><strong>Phone:</strong> {{ device.phone_number }}</p>
+                {% if device.email_address %}
+                <p><strong>Email:</strong> {{ device.email_address }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <hr style="margin: 20px 0; border: none; border-top: 1px solid #e5e7eb;">
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div>
+                <p><strong>Device Type:</strong> {{ device.device_type }}</p>
+                <p><strong>Brand/Model:</strong> {{ device.brand_model }}</p>
+            </div>
+            <div>
+                {% if device.repairer_name %}
+                <p><strong>Repairer:</strong> {{ device.repairer_name }}</p>
+                {% endif %}
+                {% if device.date_finished %}
+                <p><strong>Date Finished:</strong> {{ device.date_finished|date:"Y-m-d H:i" }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div style="margin-top: 15px;">
+            <p><strong>Problem Description:</strong></p>
+            <p style="padding: 10px; background-color: #f9fafb; border-radius: 4px;">{{ device.problem_description }}</p>
+        </div>
+
+        {% if device.accessories %}
+        <div style="margin-top: 15px; padding: 15px; background-color: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 4px;">
+            <p><strong>⚠️ ACCESSORIES:</strong></p>
+            <p>{{ device.accessories }}</p>
+        </div>
+        {% endif %}
+
+        {% if device.repair_notes %}
+        <div style="margin-top: 15px;">
+            <p><strong>Repair Notes:</strong></p>
+            <p style="padding: 10px; background-color: #f9fafb; border-radius: 4px;">{{ device.repair_notes }}</p>
+        </div>
+        {% endif %}
+
+        <div style="margin-top: 20px;">
+            <a href="{% url 'device_update' device.device_id %}" class="btn btn-primary">Update Status / Add Notes</a>
+            <a href="{% url 'print_label' device.device_id %}" class="btn btn-secondary">Print Label</a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

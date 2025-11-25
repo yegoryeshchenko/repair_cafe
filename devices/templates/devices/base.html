@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Repair Café{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="no-print">
+        <div class="header-content">
+            <h1>Repair Café</h1>
+            <nav>
+                <a href="{% url 'dashboard' %}" {% if request.path == '/' %}class="active"{% endif %}>Dashboard</a>
+                <a href="{% url 'device_intake' %}" {% if 'intake' in request.path %}class="active"{% endif %}>New Intake</a>
+                <a href="{% url 'repair_station' %}" {% if 'repair-station' in request.path %}class="active"{% endif %}>Repair Station</a>
+                <a href="{% url 'reminders' %}" {% if 'reminders' in request.path %}class="active"{% endif %}>Reminders</a>
+            </nav>
+        </div>
+    </header>
+
+    {% if messages %}
+    <div class="container no-print">
+        <ul class="messages">
+            {% for message in messages %}
+            <li class="alert alert-{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

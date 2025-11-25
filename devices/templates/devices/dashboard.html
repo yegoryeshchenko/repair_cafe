@@ -1,0 +1,77 @@
+{% extends 'devices/base.html' %}
+
+{% block title %}Dashboard - Repair Café{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="card-header">Device Dashboard</h2>
+
+    {% if reminder_count > 0 %}
+    <div class="alert alert-warning">
+        <strong>⚠️ {{ reminder_count }}</strong> device(s) need attention (in system > 14 days).
+        <a href="{% url 'reminders' %}">View reminders</a>
+    </div>
+    {% endif %}
+
+    <!-- Search and Filter -->
+    <div class="card">
+        <form method="get" action="{% url 'dashboard' %}">
+            <div class="search-bar">
+                <input type="text" name="search" class="form-control" placeholder="Search by Device ID, Customer Name, Phone, Device Type..." value="{{ search_query }}">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+
+        <div class="filter-buttons">
+            <a href="{% url 'dashboard' %}" class="filter-btn {% if not status_filter %}active{% endif %}">All</a>
+            {% for value, label in status_choices %}
+            <a href="?status={{ value }}" class="filter-btn {% if status_filter == value %}active{% endif %}">{{ label }}</a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Devices Table -->
+    <div class="card">
+        {% if devices %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Device ID</th>
+                    <th>Customer</th>
+                    <th>Device</th>
+                    <th>Problem</th>
+                    <th>Status</th>
+                    <th>Intake Date</th>
+                    <th>Days</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for device in devices %}
+                <tr>
+                    <td><strong>{{ device.device_id }}</strong></td>
+                    <td>
+                        {{ device.customer_name }}<br>
+                        <small>{{ device.phone_number }}</small>
+                    </td>
+                    <td>
+                        {{ device.device_type }}<br>
+                        <small>{{ device.brand_model }}</small>
+                    </td>
+                    <td>{{ device.problem_description|truncatewords:10 }}</td>
+                    <td><span class="status-badge status-{{ device.status }}">{{ device.get_status_display }}</span></td>
+                    <td>{{ device.intake_datetime|date:"Y-m-d H:i" }}</td>
+                    <td>{{ device.days_in_repair }}</td>
+                    <td>
+                        <a href="{% url 'device_detail' device.device_id %}" class="btn btn-secondary">View</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No devices found.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
