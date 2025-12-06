@@ -21,7 +21,13 @@ class User(AbstractUser):
 
     def save(self, *args, **kwargs):
         """Automatically set is_staff based on is_admin status"""
-        self.is_staff = self.is_admin
+        # Don't override is_staff for superusers (they always need admin access)
+        if not self.is_superuser:
+            self.is_staff = self.is_admin
+        else:
+            # Superusers should always have both is_staff and is_admin
+            self.is_staff = True
+            self.is_admin = True
         super().save(*args, **kwargs)
 
     @property
