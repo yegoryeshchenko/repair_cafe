@@ -1,0 +1,60 @@
+{% extends 'devices/base.html' %}
+
+{% block title %}User Management - Repair Café{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h2>User Management</h2>
+        <a href="{% url 'user_create' %}" class="btn btn-primary">Create New User</a>
+    </div>
+
+    <div class="card">
+        {% if users %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user_obj in users %}
+                <tr>
+                    <td><strong>{{ user_obj.username }}</strong></td>
+                    <td>{{ user_obj.get_full_name|default:"—" }}</td>
+                    <td>{{ user_obj.email|default:"—" }}</td>
+                    <td>
+                        {% if user_obj.is_admin %}
+                        <span class="status-badge status-admin">Admin</span>
+                        {% else %}
+                        <span class="status-badge status-operator">Operator</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if user_obj.is_active %}
+                        <span class="status-badge status-open">Active</span>
+                        {% else %}
+                        <span class="status-badge status-not_repaired">Inactive</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'user_edit' user_obj.id %}" class="btn btn-secondary">Edit</a>
+                        {% if user_obj.id != user.id %}
+                        <a href="{% url 'user_delete' user_obj.id %}" class="btn btn-secondary" style="background-color: #dc3545;">Delete</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p style="padding: 20px;">No users found.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

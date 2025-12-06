@@ -4,12 +4,31 @@ A Django web application to help Repair Cafés track devices brought by customer
 
 ## Features
 
+### User Roles & Access Control
+
+The application supports two user roles with different permissions:
+
+**Admin Users:**
+- Create and manage other admin and operator users
+- Perform all intake and repair operations (can act as operator)
+- Change user roles from admin to operator and back
+- Access admin panel at `/admin` to manage users and devices
+- Access main site with Users tab visible
+- Cannot change their own role (requires another admin)
+
+**Operator Users:**
+- Perform intake and repair operations (CRUD on devices)
+- Cannot access Users tab on main site
+- Cannot access admin panel at `/admin`
+- Cannot manage other users
+
 ### Reception/Intake Workflow
-- Easy-to-use intake form for receptionists
+- Easy-to-use intake form for receptionists and operators
 - Captures all customer and device information
 - Automatic Device ID generation (format: YYYY-NNNN, e.g., 2025-0042)
 - Accessories tracking with prominent display
 - Printable labels with barcode representation for device identification
+- Auto-assigns logged-in user as intaker
 
 ### Repair Station Workflow
 - Quick device search/scan by Device ID
@@ -25,10 +44,12 @@ A Django web application to help Repair Cafés track devices brought by customer
 
 ### Dashboard
 - View all devices with filtering by status
-- Search functionality (Device ID, customer name, phone, device type)
+- Filter by intaker (see who registered each device)
+- Search functionality (Device ID, customer name, phone, device type, brand/model)
 - Visual status badges
 - Days in repair counter
 - Quick access to device details
+- Sorting by multiple fields
 
 ### Reminders
 - Automatic tracking of devices in system > 14 days
@@ -39,59 +60,91 @@ A Django web application to help Repair Cafés track devices brought by customer
 ## Installation
 
 ### Prerequisites
-- Python 3.8 or higher
-- pip (Python package manager)
+- Python 3.12 or higher
+- Poetry (Python dependency manager)
+- pyenv (optional, for Python version management)
 
-### Setup Steps
+### Automated Setup
+
+The easiest way to set up the application is using the included setup script:
+
+```bash
+./setup.sh
+```
+
+This script will:
+- Install pyenv (if not already installed)
+- Install Poetry (if not already installed)
+- Install all dependencies
+- Create and run database migrations
+- Start the development server
+
+### Manual Setup
+
+If you prefer to set up manually:
 
 1. **Navigate to the project directory:**
    ```bash
    cd repair_cafe
    ```
 
-2. **Create a virtual environment:**
+2. **Install dependencies with Poetry:**
    ```bash
-   python -m venv venv
+   poetry install --sync
    ```
 
-3. **Activate the virtual environment:**
-   - On macOS/Linux:
-     ```bash
-     source venv/bin/activate
-     ```
-   - On Windows:
-     ```bash
-     venv\Scripts\activate
-     ```
-
-4. **Install dependencies:**
+3. **Activate Poetry virtual environment:**
    ```bash
-   pip install -r requirements.txt
+   source "$(poetry env info --path)/bin/activate"
+   ```
+   Or use Poetry to run commands:
+   ```bash
+   poetry run python manage.py [command]
    ```
 
-5. **Run database migrations:**
+4. **Run database migrations:**
    ```bash
-   python manage.py migrate
+   poetry run python manage.py migrate
    ```
 
-6. **Create a superuser (for admin access):**
+5. **Create the first admin user:**
    ```bash
-   python manage.py createsuperuser
+   poetry run python manage.py createsuperuser
    ```
-   Follow the prompts to create your admin account.
+   Follow the prompts to create your first admin account.
 
-7. **Run the development server:**
+6. **Run the development server:**
    ```bash
-   python manage.py runserver
+   poetry run python manage.py runserver
    ```
 
-8. **Access the application:**
+7. **Access the application:**
    - Main application: http://127.0.0.1:8000/
    - Admin interface: http://127.0.0.1:8000/admin/
 
 ## Usage Guide
 
-### For Receptionists
+### First Time Setup
+
+After installation, you'll need to create users:
+
+1. **Log in as the admin** you created during setup
+2. **Create operator users:**
+   - Go to "Users" tab (visible to admins only)
+   - Click "Create User"
+   - Fill in user details
+   - Leave "Admin User" unchecked for operators
+   - Or check "Admin User" to create another admin
+
+**Alternatively**, use the Django admin panel:
+- Go to http://127.0.0.1:8000/admin/
+- Log in with admin credentials
+- Navigate to "Users" and add new users
+- Check "Is admin" for admin users, leave unchecked for operators
+
+### For Operators (Reception & Repair)
+
+**All operators can:**
 
 1. **Intake New Device:**
    - Click "New Intake" in navigation
@@ -100,36 +153,48 @@ A Django web application to help Repair Cafés track devices brought by customer
    - Submit the form
    - Print the generated label and attach to device
 
-2. **Print Additional Labels:**
-   - Find device in dashboard
-   - Click "View" then "Print Label"
-
-### For Repairers
-
-1. **Find Device:**
+2. **Find and Update Devices:**
    - Go to "Repair Station"
    - Enter or scan the Device ID
-   - All device information will be displayed, including accessories
-
-2. **Update Status:**
+   - View all device information including accessories
    - Click "Update Status / Add Notes"
-   - Select current status
-   - Add your name as repairer
-   - Add repair notes/solution
+   - Select current status, add repairer name and notes
    - Save changes
 
-### For Managers
+3. **View Dashboard:**
+   - See all devices with status badges
+   - Filter by status or intaker
+   - Search for specific devices
+   - View device details
 
-1. **Monitor All Devices:**
-   - View dashboard for overview
-   - Filter by status to see specific categories
-   - Use search to find specific devices
-
-2. **Check Reminders:**
+4. **Check Reminders:**
    - Click "Reminders" in navigation
    - See devices that have been in system > 14 days
-   - Pay special attention to devices with accessories
-   - Contact customers or prioritize these repairs
+   - Contact customers as needed
+
+### For Admins
+
+**Admins have all operator permissions PLUS:**
+
+1. **User Management (Main Site):**
+   - Click "Users" tab in navigation
+   - View all users and their roles
+   - Create new admin or operator users
+   - Edit existing users (change names, emails, roles)
+   - Delete users (except yourself)
+   - **Note:** You cannot change your own role - another admin must do it
+
+2. **User Management (Admin Panel):**
+   - Go to http://127.0.0.1:8000/admin/
+   - Full Django admin access
+   - Manage users with simplified interface
+   - Manage devices directly if needed
+   - View detailed device information
+
+3. **Monitor All Activity:**
+   - Filter devices by intaker to see who registered what
+   - Track team performance
+   - Manage reminders and follow-ups
 
 ## Data Model
 
@@ -144,14 +209,19 @@ Each device record contains:
 
 ## Customization
 
-### Change Reminder Threshold
-Edit `devices/models.py`, line ~100 in the `needs_reminder()` method to change the 14-day default.
+### Reminder Threshold
+The reminder system is currently set to 14 days. Devices that have been in the system for more than 14 days will appear in the Reminders section.
+
+To change this threshold, edit `devices/models.py` (line 121) in the `needs_reminder()` method:
+```python
+def needs_reminder(self, days_threshold=14):  # Change 14 to your preferred number
+```
 
 ### Modify Status Options
-Edit `devices/models.py`, line ~8 in the `STATUS_CHOICES` list.
+Edit `devices/models.py` (line 29) in the `STATUS_CHOICES` list to add or modify device statuses.
 
 ### Change Device ID Format
-Edit `devices/models.py`, line ~60 in the `generate_device_id()` method.
+Edit `devices/models.py` (line 87) in the `generate_device_id()` method to customize the Device ID format (currently: YYYY-NNNN).
 
 ## Production Deployment
 

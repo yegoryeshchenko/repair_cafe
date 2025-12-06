@@ -1,6 +1,33 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 from datetime import datetime, timedelta
+
+
+class User(AbstractUser):
+    """Custom User model with role-based access"""
+    is_admin = models.BooleanField(
+        default=False,
+        help_text="Designates whether the user has admin privileges (can manage users)."
+    )
+
+    class Meta:
+        db_table = 'auth_user'
+        verbose_name = 'user'
+        verbose_name_plural = 'users'
+
+    def __str__(self):
+        return self.get_full_name() or self.username
+
+    def save(self, *args, **kwargs):
+        """Automatically set is_staff based on is_admin status"""
+        self.is_staff = self.is_admin
+        super().save(*args, **kwargs)
+
+    @property
+    def is_operator(self):
+        """Check if user is an operator (regular user)"""
+        return not self.is_admin
 
 
 class Device(models.Model):
@@ -17,6 +44,13 @@ class Device(models.Model):
 
     # Intake information
     intake_datetime = models.DateTimeField(default=timezone.now)
+    intaker = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='intaken_devices',
+        help_text="User who registered this device"
+    )
 
     # Customer information
     customer_name = models.CharField(max_length=200)

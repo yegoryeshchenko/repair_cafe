@@ -4,21 +4,70 @@ echo "========================================"
 echo "Repair Café Setup Script"
 echo "========================================"
 
-# Create virtual environment
-echo "Creating virtual environment..."
-python3 -m venv venv
+# Install pyenv if not already installed
+if ! command -v pyenv &> /dev/null; then
+    echo "Installing pyenv..."
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS
+        if ! command -v brew &> /dev/null; then
+            echo "Homebrew not found. Please install Homebrew first: https://brew.sh"
+            exit 1
+        fi
+        brew update
+        brew install pyenv
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        # Linux
+        curl https://pyenv.run | bash
+    else
+        echo "Unsupported OS. Please install pyenv manually: https://github.com/pyenv/pyenv#installation"
+        exit 1
+    fi
 
-# Install dependencies using venv's pip directly
-echo "Installing dependencies..."
-./venv/bin/pip install -r requirements.txt
+    # Add pyenv to shell
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+
+    echo "pyenv installed. You may need to restart your shell or run:"
+    echo "  export PYENV_ROOT=\"\$HOME/.pyenv\""
+    echo "  export PATH=\"\$PYENV_ROOT/bin:\$PATH\""
+    echo "  eval \"\$(pyenv init -)\""
+else
+    echo "pyenv is already installed."
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+fi
+
+# Install Poetry if not already installed
+if ! command -v poetry &> /dev/null; then
+    echo "Installing Poetry..."
+    curl -sSL https://install.python-poetry.org | python3 -
+
+    # Add Poetry to PATH
+    export PATH="$HOME/.local/bin:$PATH"
+
+    echo "Poetry installed."
+else
+    echo "Poetry is already installed."
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
+# Install dependencies with Poetry
+echo "Installing dependencies with Poetry..."
+poetry install --sync
+
+# Activate Poetry virtual environment
+echo "Activating Poetry virtual environment..."
+source "$(poetry env info --path)/bin/activate"
 
 # Create migrations
 echo "Creating database migrations..."
-./venv/bin/python manage.py makemigrations
+poetry run python manage.py makemigrations
 
 # Run migrations
 echo "Running database migrations..."
-./venv/bin/python manage.py migrate
+poetry run python manage.py migrate
 
 # Success message
 echo ""
@@ -26,18 +75,17 @@ echo "========================================"
 echo "✓ Setup Complete!"
 echo "========================================"
 echo ""
-echo "Next steps:"
+echo "Starting development server..."
 echo ""
-echo "1. Create an admin user:"
-echo "   ./venv/bin/python manage.py createsuperuser"
+echo "Access your application at:"
+echo "  - Main site: http://127.0.0.1:8000/"
+echo "  - Admin interface: http://127.0.0.1:8000/admin/"
 echo ""
-echo "2. Start the development server:"
-echo "   ./venv/bin/python manage.py runserver"
-echo ""
-echo "3. Open your browser and go to:"
-echo "   http://127.0.0.1:8000/"
-echo ""
-echo "4. Access admin interface at:"
-echo "   http://127.0.0.1:8000/admin/"
+echo "Note: Create an admin user first with:"
+echo "  poetry run python manage.py createsuperuser"
 echo ""
 echo "========================================"
+echo ""
+
+# Start the development server
+poetry run python manage.py runserver
