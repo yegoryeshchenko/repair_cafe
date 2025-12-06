@@ -1,5 +1,6 @@
 from django import forms
-from .models import Device
+from django.contrib.auth.forms import UserCreationForm
+from .models import Device, User
 
 
 class DeviceIntakeForm(forms.ModelForm):
@@ -54,3 +55,73 @@ class DeviceSearchForm(forms.Form):
             'autofocus': True
         })
     )
+
+
+class UserCreateForm(UserCreationForm):
+    """Form for creating new users"""
+    first_name = forms.CharField(
+        max_length=150,
+        required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'})
+    )
+    last_name = forms.CharField(
+        max_length=150,
+        required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'})
+    )
+    is_admin = forms.BooleanField(
+        required=False,
+        label='Admin User',
+        help_text='Check if this user should have admin privileges (can manage users)',
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
+    )
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email', 'is_admin', 'password1', 'password2')
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'email@example.com'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['password1'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Password'})
+        self.fields['password2'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Confirm Password'})
+
+
+class UserEditForm(forms.ModelForm):
+    """Form for editing existing users"""
+    first_name = forms.CharField(
+        max_length=150,
+        required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'})
+    )
+    last_name = forms.CharField(
+        max_length=150,
+        required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'})
+    )
+    is_admin = forms.BooleanField(
+        required=False,
+        label='Admin User',
+        help_text='Check if this user should have admin privileges (can manage users)',
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
+    )
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email', 'is_admin', 'is_active')
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'email@example.com'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        self.current_user = kwargs.pop('current_user', None)
+        super().__init__(*args, **kwargs)
+
+        # Disable is_admin checkbox if editing own account
+        if self.current_user and self.instance and self.instance.pk == self.current_user.pk:
+            self.fields['is_admin'].disabled = True
+            self.fields['is_admin'].help_text = 'You cannot change your own admin role. Another admin must change it for you.'

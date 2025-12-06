@@ -5,18 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Repair Café{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{% static 'logo.png' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <header class="no-print">
         <div class="header-content">
-            <h1>Repair Café</h1>
+            <div class="header-logo-title">
+                <img src="{% static 'logo.png' %}" alt="Repair Café Logo" class="header-logo">
+                <h1>Repair Café</h1>
+            </div>
+            {% if user.is_authenticated %}
             <nav>
                 <a href="{% url 'dashboard' %}" {% if request.path == '/' %}class="active"{% endif %}>Dashboard</a>
                 <a href="{% url 'device_intake' %}" {% if 'intake' in request.path %}class="active"{% endif %}>New Intake</a>
                 <a href="{% url 'repair_station' %}" {% if 'repair-station' in request.path %}class="active"{% endif %}>Repair Station</a>
                 <a href="{% url 'reminders' %}" {% if 'reminders' in request.path %}class="active"{% endif %}>Reminders</a>
+                {% if user.is_admin %}
+                <a href="{% url 'user_list' %}" {% if 'users' in request.path %}class="active"{% endif %}>Users</a>
+                {% endif %}
             </nav>
+            <div class="user-info">
+                <span class="user-name">{{ user.get_full_name|default:user.username }}</span>
+                <span class="user-role">{% if user.is_admin %}Admin{% else %}Operator{% endif %}</span>
+                <a href="{% url 'logout' %}" class="btn-logout">Logout</a>
+            </div>
+            {% endif %}
         </div>
     </header>
 
