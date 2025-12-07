@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 from datetime import datetime, timedelta
 
 
@@ -38,11 +39,11 @@ class User(AbstractUser):
 
 class Device(models.Model):
     STATUS_CHOICES = [
-        ('open', 'Open'),
-        ('in_progress', 'In Progress'),
-        ('repaired', 'Repaired'),
-        ('not_repaired', 'Not Repaired'),
-        ('free_for_recycling', 'Free for Recycling'),
+        ('open', _('Open')),
+        ('in_progress', _('In Progress')),
+        ('repaired', _('Repaired')),
+        ('not_repaired', _('Not Repaired')),
+        ('free_for_recycling', _('Free for Recycling')),
     ]
 
     # Auto-generated Device ID (e.g., 2025-0042)

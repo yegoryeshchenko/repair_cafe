@@ -3,11 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-07 00:25+0000\n"
+"POT-Creation-Date: 2025-12-07 00:55+0000\n"
 "PO-Revision-Date: 2025-12-07 00:00+0000\n"
 "Last-Translator: Repair Café Team\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +17,26 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: devices/models.py:42
+msgid "Open"
+msgstr "Open"
+
+#: devices/models.py:43
+msgid "In Progress"
+msgstr "Bezig"
+
+#: devices/models.py:44
+msgid "Repaired"
+msgstr "Gerepareerd"
+
+#: devices/models.py:45
+msgid "Not Repaired"
+msgstr "Niet Gerepareerd"
+
+#: devices/models.py:46
+msgid "Free for Recycling"
+msgstr "Voor Recycling"
 
 #: devices/templates/admin/base_site.html:4
 msgid "Django site admin"
@@ -35,33 +56,27 @@ msgid "New Intake"
 msgstr "Nieuwe Intake"
 
 #: devices/templates/devices/base.html:23
-#: devices/templates/devices/repair_station.html:4
-#: devices/templates/devices/repair_station.html:9
-msgid "Repair Station"
-msgstr "Reparatiestation"
-
-#: devices/templates/devices/base.html:24
 #: devices/templates/devices/reminders.html:4
 msgid "Reminders"
 msgstr "Herinneringen"
 
-#: devices/templates/devices/base.html:26
+#: devices/templates/devices/base.html:25
 msgid "Users"
 msgstr "Gebruikers"
 
-#: devices/templates/devices/base.html:44
+#: devices/templates/devices/base.html:30
 #: devices/templates/devices/user_confirm_delete.html:19
 #: devices/templates/devices/user_list.html:34
 msgid "Admin"
 msgstr "Beheerder"
 
-#: devices/templates/devices/base.html:44
+#: devices/templates/devices/base.html:30
 #: devices/templates/devices/user_confirm_delete.html:19
 #: devices/templates/devices/user_list.html:36
 msgid "Operator"
 msgstr "Operator"
 
-#: devices/templates/devices/base.html:45
+#: devices/templates/devices/base.html:40
 msgid "Logout"
 msgstr "Uitloggen"
 
@@ -71,15 +86,15 @@ msgstr "Dashboard"
 
 #: devices/templates/devices/dashboard.html:12
 msgid "device(s) need attention (in system > 14 days)."
-msgstr "apparaat/apparaten hebben aandacht nodig (in systeem > 14 dagen)."
+msgstr "apparaten nodig aandacht (> 14 dagen in systeem)."
 
 #: devices/templates/devices/dashboard.html:13
 msgid "View reminders"
-msgstr "Herinneringen"
+msgstr "Bekijk"
 
 #: devices/templates/devices/dashboard.html:21
 msgid "Search by Device ID, Customer Name, Phone, Device Type..."
-msgstr "Zoek op Apparaat ID, Klantnaam, Telefoon, Apparaattype..."
+msgstr "Zoek op Apparaat ID, Naam, Telefoon, Type..."
 
 #: devices/templates/devices/dashboard.html:22
 msgid "Search"
@@ -91,11 +106,11 @@ msgstr "Alle"
 
 #: devices/templates/devices/dashboard.html:36
 msgid "Filter by Intaker:"
-msgstr "Filter op Intaker:"
+msgstr "Filter op:"
 
 #: devices/templates/devices/dashboard.html:38
 msgid "All Intakers"
-msgstr "Nieuwe Intake"
+msgstr "Alle"
 
 #: devices/templates/devices/dashboard.html:67
 #: devices/templates/devices/reminders.html:18
@@ -130,7 +145,7 @@ msgstr "Intake Datum"
 
 #: devices/templates/devices/dashboard.html:93
 msgid "Intaker"
-msgstr "Nieuwe Intake"
+msgstr "Intaker"
 
 #: devices/templates/devices/dashboard.html:96
 #: devices/templates/devices/reminders.html:24
@@ -153,14 +168,12 @@ msgid "No devices found."
 msgstr "Geen apparaten gevonden."
 
 #: devices/templates/devices/detail.html:10
-
-#| msgid "Device ID"
 msgid "Device Details"
-msgstr "Apparaat ID"
+msgstr "Details"
 
 #: devices/templates/devices/detail.html:16
 msgid "Customer Information"
-msgstr "Klantinformatie"
+msgstr "Klant Info"
 
 #: devices/templates/devices/detail.html:17
 msgid "Name:"
@@ -170,7 +183,7 @@ msgstr "Naam:"
 #: devices/templates/devices/print_label.html:52
 #: devices/templates/devices/repair_station.html:32
 msgid "Phone:"
-msgstr "Telefoon:"
+msgstr "Tel:"
 
 #: devices/templates/devices/detail.html:20
 #: devices/templates/devices/repair_station.html:34
@@ -184,30 +197,26 @@ msgstr "Tijdlijn"
 
 #: devices/templates/devices/detail.html:26
 #: devices/templates/devices/repair_station.html:27
-
-#| msgid "Intake Date"
 msgid "Intake Date:"
-msgstr "Intake Datum"
+msgstr "Intake:"
 
 #: devices/templates/devices/detail.html:28
 msgid "Finished Date:"
-msgstr "Afgerond Datum:"
+msgstr "Afgerond:"
 
 #: devices/templates/devices/detail.html:30
 msgid "Days in Repair:"
-msgstr "Dagen in Reparatie:"
+msgstr "Dagen:"
 
 #: devices/templates/devices/detail.html:38
 #: devices/templates/devices/repair_station.html:21
 msgid "Device Information"
-msgstr "Apparaat Informatie"
+msgstr "Apparaat Info"
 
 #: devices/templates/devices/detail.html:39
 #: devices/templates/devices/repair_station.html:43
-
-#| msgid "Device ID"
 msgid "Device Type:"
-msgstr "Apparaat ID"
+msgstr "Type:"
 
 #: devices/templates/devices/detail.html:40
 #: devices/templates/devices/print_label.html:54
@@ -216,10 +225,8 @@ msgid "Brand/Model:"
 msgstr "Merk/Model:"
 
 #: devices/templates/devices/detail.html:44
-
-#| msgid "Repair Station"
 msgid "Repair Information"
-msgstr "Reparatiestation"
+msgstr "Reparatie Info"
 
 #: devices/templates/devices/detail.html:46
 #: devices/templates/devices/detail.html:48
@@ -234,7 +241,7 @@ msgstr "Niet toegewezen"
 #: devices/templates/devices/detail.html:54
 #: devices/templates/devices/intake.html:40
 msgid "Problem Description"
-msgstr "Probleembeschrijving"
+msgstr "Probleem"
 
 #: devices/templates/devices/detail.html:62
 #: devices/templates/devices/intake.html:45
@@ -243,64 +250,50 @@ msgid "Accessories"
 msgstr "Accessoires"
 
 #: devices/templates/devices/detail.html:69
-
-#| msgid "Repair Station"
 msgid "Repair Notes"
-msgstr "Reparatiestation"
+msgstr "Notities"
 
 #: devices/templates/devices/detail.html:77
 #: devices/templates/devices/update.html:9
-
-#| msgid "Device"
 msgid "Update Device"
-msgstr "Apparaat"
+msgstr "Bijwerken"
 
 #: devices/templates/devices/detail.html:78
 #: devices/templates/devices/print_label.html:4
 #: devices/templates/devices/print_label.html:9
 #: devices/templates/devices/repair_station.html:77
 msgid "Print Label"
-msgstr "Label Afdrukken"
+msgstr "Print Label"
 
 #: devices/templates/devices/detail.html:79
 #: devices/templates/devices/print_label.html:10
 #: devices/templates/devices/reminders.html:65
-
-#| msgid "Dashboard"
 msgid "Back to Dashboard"
-msgstr "Dashboard"
+msgstr "Terug"
 
 #: devices/templates/devices/intake.html:4
-
-#| msgid "Device ID"
 msgid "Device Intake"
-msgstr "Apparaat ID"
+msgstr "Intake"
 
 #: devices/templates/devices/intake.html:9
-
-#| msgid "New Intake"
 msgid "New Device Intake"
 msgstr "Nieuwe Intake"
 
 #: devices/templates/devices/intake.html:15
-
-#| msgid "Customer"
 msgid "Customer Name"
-msgstr "Klant"
+msgstr "Naam"
 
 #: devices/templates/devices/intake.html:20
 msgid "Phone Number"
-msgstr "Telefoonnummer"
+msgstr "Telefoon"
 
 #: devices/templates/devices/intake.html:25
 msgid "Email Address"
-msgstr "E-mailadres"
+msgstr "E-mail"
 
 #: devices/templates/devices/intake.html:30
-
-#| msgid "Device"
 msgid "Device Type"
-msgstr "Apparaat"
+msgstr "Type"
 
 #: devices/templates/devices/intake.html:35
 msgid "Brand / Model"
@@ -313,7 +306,7 @@ msgstr ""
 
 #: devices/templates/devices/intake.html:50
 msgid "Register Device"
-msgstr "Apparaat Registreren"
+msgstr "Registreren"
 
 #: devices/templates/devices/intake.html:51
 #: devices/templates/devices/update.html:39
@@ -357,23 +350,17 @@ msgstr "Log in om toegang te krijgen tot het systeem"
 #: devices/templates/devices/print_label.html:51
 #: devices/templates/devices/repair_station.html:31
 #: devices/templates/devices/update.html:12
-
-#| msgid "Customer"
 msgid "Customer:"
-msgstr "Klant"
+msgstr "Klant:"
 
 #: devices/templates/devices/print_label.html:53
 #: devices/templates/devices/update.html:13
-
-#| msgid "Device"
 msgid "Device:"
-msgstr "Apparaat"
+msgstr "Apparaat:"
 
 #: devices/templates/devices/print_label.html:55
-
-#| msgid "Intaker"
 msgid "Intake:"
-msgstr "Nieuwe Intake"
+msgstr "Intake:"
 
 #: devices/templates/devices/print_label.html:59
 #: devices/templates/devices/repair_station.html:63
@@ -382,15 +369,15 @@ msgstr "ACCESSOIRES:"
 
 #: devices/templates/devices/print_label.html:66
 msgid "Please attach this label to the device."
-msgstr "Bevestig dit label aan het apparaat."
+msgstr "Bevestig dit label aan apparaat."
 
 #: devices/templates/devices/print_label.html:67
 msgid "Keep items together to prevent loss."
-msgstr "Houd items bij elkaar om verlies te voorkomen."
+msgstr "Houd items bij elkaar."
 
 #: devices/templates/devices/reminders.html:9
 msgid "Devices Needing Attention"
-msgstr "Apparaten die Aandacht Nodig Hebben"
+msgstr "Aandacht Nodig"
 
 #: devices/templates/devices/reminders.html:11
 msgid ""
@@ -409,62 +396,57 @@ msgid "Yes"
 msgstr "Ja"
 
 #: devices/templates/devices/reminders.html:58
-
-#| msgid "device(s) need attention (in system > 14 days)."
 msgid "No devices need attention at this time!"
-msgstr "apparaat/apparaten hebben aandacht nodig (in systeem > 14 dagen)."
+msgstr "Geen apparaten nodig aandacht!"
 
 #: devices/templates/devices/reminders.html:59
 msgid "All devices are within the acceptable timeframe."
-msgstr "Alle apparaten zijn binnen het acceptabele tijdsbestek."
+msgstr "Alle apparaten zijn op tijd."
+
+#: devices/templates/devices/repair_station.html:4
+#: devices/templates/devices/repair_station.html:9
+msgid "Repair Station"
+msgstr "Reparatiestation"
 
 #: devices/templates/devices/repair_station.html:14
-
-#| msgid "Search"
 msgid "Search / Scan"
-msgstr "Zoeken"
+msgstr "Zoek / Scan"
 
 #: devices/templates/devices/repair_station.html:25
-
-#| msgid "Device ID"
 msgid "Device ID:"
-msgstr "Apparaat ID"
+msgstr "ID:"
 
 #: devices/templates/devices/repair_station.html:26
-
-#| msgid "Status"
 msgid "Status:"
-msgstr "Status"
+msgstr "Status:"
 
 #: devices/templates/devices/repair_station.html:28
 msgid "Days in repair:"
-msgstr "Dagen in reparatie:"
+msgstr "Dagen:"
 
 #: devices/templates/devices/repair_station.html:51
 msgid "Date Finished:"
-msgstr "Datum Afgerond:"
+msgstr "Afgerond:"
 
 #: devices/templates/devices/repair_station.html:57
 msgid "Problem Description:"
-msgstr "Probleembeschrijving:"
+msgstr "Probleem:"
 
 #: devices/templates/devices/repair_station.html:70
 msgid "Repair Notes:"
-msgstr "Reparatie Notities:"
+msgstr "Notities:"
 
 #: devices/templates/devices/repair_station.html:76
 msgid "Update Status / Add Notes"
-msgstr "Status Bijwerken / Notities Toevoegen"
+msgstr "Bijwerken / Notities"
 
 #: devices/templates/devices/update.html:4
 msgid "Update"
 msgstr "Bijwerken"
 
 #: devices/templates/devices/update.html:14
-
-#| msgid "Problem"
 msgid "Problem:"
-msgstr "Probleem"
+msgstr "Probleem:"
 
 #: devices/templates/devices/update.html:16
 msgid "Accessories:"
@@ -472,37 +454,33 @@ msgstr "Accessoires:"
 
 #: devices/templates/devices/update.html:29
 msgid "Repairer Name"
-msgstr "Naam Reparateur"
+msgstr "Reparateur"
 
 #: devices/templates/devices/update.html:34
-
-#| msgid "Repair Station"
 msgid "Repair Notes / Solution"
-msgstr "Reparatiestation"
+msgstr "Notities / Oplossing"
 
 #: devices/templates/devices/update.html:38
 msgid "Save Changes"
-msgstr "Wijzigingen Opslaan"
+msgstr "Opslaan"
 
 #: devices/templates/devices/user_confirm_delete.html:4
 #: devices/templates/devices/user_confirm_delete.html:8
 #: devices/templates/devices/user_confirm_delete.html:29
 msgid "Delete User"
-msgstr "Gebruiker Verwijderen"
+msgstr "Verwijder Gebruiker"
 
 #: devices/templates/devices/user_confirm_delete.html:12
 msgid "Warning!"
-msgstr "Waarschuwing!"
+msgstr "Let op!"
 
 #: devices/templates/devices/user_confirm_delete.html:12
 msgid "Are you sure you want to delete this user?"
-msgstr "Weet je zeker dat je deze gebruiker wilt verwijderen?"
+msgstr "Weet je zeker dat je wilt verwijderen?"
 
 #: devices/templates/devices/user_confirm_delete.html:16
-
-#| msgid "Username"
 msgid "Username:"
-msgstr "Gebruikersnaam"
+msgstr "Naam:"
 
 #: devices/templates/devices/user_confirm_delete.html:17
 msgid "Full Name:"
@@ -521,10 +499,8 @@ msgstr ""
 #: devices/templates/devices/user_form.html:4
 #: devices/templates/devices/user_form.html:8
 #: devices/templates/devices/user_form.html:89
-
-#| msgid "Users"
 msgid "User"
-msgstr "Gebruikers"
+msgstr "Gebruiker"
 
 #: devices/templates/devices/user_form.html:29
 msgid "First Name"
@@ -540,39 +516,33 @@ msgid "Email"
 msgstr "E-mail"
 
 #: devices/templates/devices/user_form.html:63
-
-#| msgid "Password"
 msgid "Confirm Password"
-msgstr "Wachtwoord"
+msgstr "Bevestig"
 
 #: devices/templates/devices/user_form.html:83
 msgid "Active User"
-msgstr "Actieve Gebruiker"
+msgstr "Actief"
 
 #: devices/templates/devices/user_list.html:4
 #: devices/templates/devices/user_list.html:9
-
-#| msgid "Username"
 msgid "User Management"
-msgstr "Gebruikersnaam"
+msgstr "Gebruikers"
 
 #: devices/templates/devices/user_list.html:10
 msgid "Create New User"
-msgstr "Nieuwe Gebruiker Aanmaken"
+msgstr "Nieuwe Gebruiker"
 
 #: devices/templates/devices/user_list.html:19
 msgid "Full Name"
-msgstr "Volledige Naam"
+msgstr "Naam"
 
 #: devices/templates/devices/user_list.html:21
 msgid "Role"
 msgstr "Rol"
 
 #: devices/templates/devices/user_list.html:41
-
-#| msgid "Actions"
 msgid "Active"
-msgstr "Acties"
+msgstr "Actief"
 
 #: devices/templates/devices/user_list.html:43
 msgid "Inactive"
@@ -589,10 +559,8 @@ msgid "Delete"
 msgstr "Verwijderen"
 
 #: devices/templates/devices/user_list.html:57
-
-#| msgid "No devices found."
 msgid "No users found."
-msgstr "Geen apparaten gevonden."
+msgstr "Geen gebruikers."
 
 #: venv/lib/python3.12/site-packages/django/contrib/messages/apps.py:15
 #: venv/lib/python3.14/site-packages/django/contrib/messages/apps.py:15

@@ -54,6 +54,13 @@ translations = {
     "User": "Gebruiker",
     "Update": "Bijwerken",
 
+    # Status choices
+    "Open": "Open",
+    "In Progress": "Bezig",
+    "Repaired": "Gerepareerd",
+    "Not Repaired": "Niet Gerepareerd",
+    "Free for Recycling": "Voor Recycling",
+
     # Intake page
     "Device Intake": "Intake",
     "New Device Intake": "Nieuwe Intake",
@@ -151,7 +158,10 @@ def add_translations():
     with open(po_file_path, 'r', encoding='utf-8') as f:
         content = f.read()
 
-    for english, dutch in translations.items():
+    # Sort by length (longest first) to avoid partial matches
+    sorted_translations = sorted(translations.items(), key=lambda x: len(x[0]), reverse=True)
+
+    for english, dutch in sorted_translations:
         # Find the msgid and replace empty msgstr
         pattern = f'msgid "{english}"\nmsgstr ""'
         replacement = f'msgid "{english}"\nmsgstr "{dutch}"'

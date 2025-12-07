@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-07 00:25+0000\n"
+"POT-Creation-Date: 2025-12-07 00:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,26 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: devices/models.py:42
+msgid "Open"
+msgstr ""
+
+#: devices/models.py:43
+msgid "In Progress"
+msgstr ""
+
+#: devices/models.py:44
+msgid "Repaired"
+msgstr ""
+
+#: devices/models.py:45
+msgid "Not Repaired"
+msgstr ""
+
+#: devices/models.py:46
+msgid "Free for Recycling"
+msgstr ""
 
 #: devices/templates/admin/base_site.html:4
 msgid "Django site admin"
@@ -36,33 +56,27 @@ msgid "New Intake"
 msgstr ""
 
 #: devices/templates/devices/base.html:23
-#: devices/templates/devices/repair_station.html:4
-#: devices/templates/devices/repair_station.html:9
-msgid "Repair Station"
-msgstr ""
-
-#: devices/templates/devices/base.html:24
 #: devices/templates/devices/reminders.html:4
 msgid "Reminders"
 msgstr ""
 
-#: devices/templates/devices/base.html:26
+#: devices/templates/devices/base.html:25
 msgid "Users"
 msgstr ""
 
-#: devices/templates/devices/base.html:44
+#: devices/templates/devices/base.html:30
 #: devices/templates/devices/user_confirm_delete.html:19
 #: devices/templates/devices/user_list.html:34
 msgid "Admin"
 msgstr ""
 
-#: devices/templates/devices/base.html:44
+#: devices/templates/devices/base.html:30
 #: devices/templates/devices/user_confirm_delete.html:19
 #: devices/templates/devices/user_list.html:36
 msgid "Operator"
 msgstr ""
 
-#: devices/templates/devices/base.html:45
+#: devices/templates/devices/base.html:40
 msgid "Logout"
 msgstr ""
 
@@ -387,6 +401,11 @@ msgstr ""
 
 #: devices/templates/devices/reminders.html:59
 msgid "All devices are within the acceptable timeframe."
+msgstr ""
+
+#: devices/templates/devices/repair_station.html:4
+#: devices/templates/devices/repair_station.html:9
+msgid "Repair Station"
 msgstr ""
 
 #: devices/templates/devices/repair_station.html:14
