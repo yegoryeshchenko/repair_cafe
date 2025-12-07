@@ -1,10 +1,11 @@
 {% extends 'devices/base.html' %}
+{% load i18n %}
 
-{% block title %}{{ action }} User - Repair Café{% endblock %}
+{% block title %}{{ action }} {% trans "User" %} - Repair Café{% endblock %}
 
 {% block content %}
 <div class="container" style="max-width: 600px;">
-    <h2 class="card-header">{{ action }} User</h2>
+    <h2 class="card-header">{{ action }} {% trans "User" %}</h2>
 
     <div class="card">
         <form method="post">
@@ -17,7 +18,7 @@
             {% endif %}
 
             <div class="form-group">
-                <label for="{{ form.username.id_for_label }}">Username</label>
+                <label for="{{ form.username.id_for_label }}">{% trans "Username" %}</label>
                 {{ form.username }}
                 {% if form.username.errors %}
                 <small style="color: #dc3545;">{{ form.username.errors.0 }}</small>
@@ -25,7 +26,7 @@
             </div>
 
             <div class="form-group">
-                <label for="{{ form.first_name.id_for_label }}">First Name</label>
+                <label for="{{ form.first_name.id_for_label }}">{% trans "First Name" %}</label>
                 {{ form.first_name }}
                 {% if form.first_name.errors %}
                 <small style="color: #dc3545;">{{ form.first_name.errors.0 }}</small>
@@ -33,7 +34,7 @@
             </div>
 
             <div class="form-group">
-                <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+                <label for="{{ form.last_name.id_for_label }}">{% trans "Last Name" %}</label>
                 {{ form.last_name }}
                 {% if form.last_name.errors %}
                 <small style="color: #dc3545;">{{ form.last_name.errors.0 }}</small>
@@ -41,7 +42,7 @@
             </div>
 
             <div class="form-group">
-                <label for="{{ form.email.id_for_label }}">Email</label>
+                <label for="{{ form.email.id_for_label }}">{% trans "Email" %}</label>
                 {{ form.email }}
                 {% if form.email.errors %}
                 <small style="color: #dc3545;">{{ form.email.errors.0 }}</small>
@@ -50,7 +51,7 @@
 
             {% if form.password1 %}
             <div class="form-group">
-                <label for="{{ form.password1.id_for_label }}">Password</label>
+                <label for="{{ form.password1.id_for_label }}">{% trans "Password" %}</label>
                 {{ form.password1 }}
                 {% if form.password1.errors %}
                 <small style="color: #dc3545;">{{ form.password1.errors.0 }}</small>
@@ -59,7 +60,7 @@
             </div>
 
             <div class="form-group">
-                <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
+                <label for="{{ form.password2.id_for_label }}">{% trans "Confirm Password" %}</label>
                 {{ form.password2 }}
                 {% if form.password2.errors %}
                 <small style="color: #dc3545;">{{ form.password2.errors.0 }}</small>
@@ -79,14 +80,14 @@
             <div class="form-group">
                 <label style="display: flex; align-items: center; cursor: pointer;">
                     {{ form.is_active }}
-                    <span style="margin-left: 8px;">Active User</span>
+                    <span style="margin-left: 8px;">{% trans "Active User" %}</span>
                 </label>
             </div>
             {% endif %}
 
             <div style="display: flex; gap: 10px; margin-top: 30px;">
-                <button type="submit" class="btn btn-primary">{{ action }} User</button>
-                <a href="{% url 'user_list' %}" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">{{ action }} {% trans "User" %}</button>
+                <a href="{% url 'user_list' %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
             </div>
         </form>
     </div>

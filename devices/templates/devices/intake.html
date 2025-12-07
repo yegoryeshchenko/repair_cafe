@@ -1,53 +1,54 @@
 {% extends 'devices/base.html' %}
+{% load i18n %}
 
-{% block title %}Device Intake - Repair Café{% endblock %}
+{% block title %}{% trans "Device Intake" %} - Repair Café{% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="card">
-        <h2 class="card-header">New Device Intake</h2>
+        <h2 class="card-header">{% trans "New Device Intake" %}</h2>
 
         <form method="post">
             {% csrf_token %}
 
             <div class="form-group">
-                <label for="id_customer_name">Customer Name *</label>
+                <label for="id_customer_name">{% trans "Customer Name" %} *</label>
                 {{ form.customer_name }}
             </div>
 
             <div class="form-group">
-                <label for="id_phone_number">Phone Number *</label>
+                <label for="id_phone_number">{% trans "Phone Number" %} *</label>
                 {{ form.phone_number }}
             </div>
 
             <div class="form-group">
-                <label for="id_email_address">Email Address</label>
+                <label for="id_email_address">{% trans "Email Address" %}</label>
                 {{ form.email_address }}
             </div>
 
             <div class="form-group">
-                <label for="id_device_type">Device Type *</label>
+                <label for="id_device_type">{% trans "Device Type" %} *</label>
                 {{ form.device_type }}
             </div>
 
             <div class="form-group">
-                <label for="id_brand_model">Brand / Model *</label>
+                <label for="id_brand_model">{% trans "Brand / Model" %} *</label>
                 {{ form.brand_model }}
             </div>
 
             <div class="form-group">
-                <label for="id_problem_description">Problem Description *</label>
+                <label for="id_problem_description">{% trans "Problem Description" %} *</label>
                 {{ form.problem_description }}
             </div>
 
             <div class="form-group">
-                <label for="id_accessories">Accessories</label>
+                <label for="id_accessories">{% trans "Accessories" %}</label>
                 {{ form.accessories }}
-                <small style="color: #666;">List any accessories brought with the device (charger, case, cables, etc.)</small>
+                <small style="color: #666;">{% trans "List any accessories brought with the device (charger, case, cables, etc.)" %}</small>
             </div>
 
-            <button type="submit" class="btn btn-primary">Register Device</button>
-            <a href="{% url 'dashboard' %}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">{% trans "Register Device" %}</button>
+            <a href="{% url 'dashboard' %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
         </form>
     </div>
 </div>

@@ -1,13 +1,14 @@
 {% extends 'devices/base.html' %}
+{% load i18n %}
 
-{% block title %}Login - Repair Café{% endblock %}
+{% block title %}{% trans "Login" %} - Repair Café{% endblock %}
 
 {% block content %}
 <div class="container" style="max-width: 500px; margin-top: 80px;">
     <div class="card">
         <div style="text-align: center; padding: 30px 30px 10px;">
             <h2>Repair Café</h2>
-            <p style="color: #666; margin-top: 10px;">Device Management System</p>
+            <p style="color: #666; margin-top: 10px;">{% trans "Device Management System" %}</p>
         </div>
 
         <form method="post" style="padding: 20px 30px 30px;">
@@ -22,38 +23,38 @@
             {% endif %}
 
             <div style="margin-bottom: 20px;">
-                <label for="username" style="display: block; margin-bottom: 8px; font-weight: 500;">Username</label>
+                <label for="username" style="display: block; margin-bottom: 8px; font-weight: 500;">{% trans "Username" %}</label>
                 <input
                     type="text"
                     id="username"
                     name="username"
                     class="form-control"
-                    placeholder="Enter your username"
+                    placeholder="{% trans 'Enter your username' %}"
                     required
                     autofocus
                 >
             </div>
 
             <div style="margin-bottom: 25px;">
-                <label for="password" style="display: block; margin-bottom: 8px; font-weight: 500;">Password</label>
+                <label for="password" style="display: block; margin-bottom: 8px; font-weight: 500;">{% trans "Password" %}</label>
                 <input
                     type="password"
                     id="password"
                     name="password"
                     class="form-control"
-                    placeholder="Enter your password"
+                    placeholder="{% trans 'Enter your password' %}"
                     required
                 >
             </div>
 
             <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px;">
-                Login
+                {% trans "Login" %}
             </button>
         </form>
     </div>
 
     <div style="text-align: center; margin-top: 20px; color: #666; font-size: 14px;">
-        <p>Please login to access the system</p>
+        <p>{% trans "Please login to access the system" %}</p>
     </div>
 </div>
 {% endblock %}

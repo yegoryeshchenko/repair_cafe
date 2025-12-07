@@ -1,18 +1,19 @@
 {% extends 'devices/base.html' %}
+{% load i18n %}
 
-{% block title %}Update {{ device.device_id }} - Repair Café{% endblock %}
+{% block title %}{% trans "Update" %} {{ device.device_id }} - Repair Café{% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="card">
-        <h2 class="card-header">Update Device - {{ device.device_id }}</h2>
+        <h2 class="card-header">{% trans "Update Device" %} - {{ device.device_id }}</h2>
 
         <div style="padding: 15px; background-color: #f9fafb; border-radius: 4px; margin-bottom: 20px;">
-            <p><strong>Customer:</strong> {{ device.customer_name }}</p>
-            <p><strong>Device:</strong> {{ device.device_type }} - {{ device.brand_model }}</p>
-            <p><strong>Problem:</strong> {{ device.problem_description }}</p>
+            <p><strong>{% trans "Customer:" %}</strong> {{ device.customer_name }}</p>
+            <p><strong>{% trans "Device:" %}</strong> {{ device.device_type }} - {{ device.brand_model }}</p>
+            <p><strong>{% trans "Problem:" %}</strong> {{ device.problem_description }}</p>
             {% if device.accessories %}
-            <p style="color: #92400e;"><strong>⚠️ Accessories:</strong> {{ device.accessories }}</p>
+            <p style="color: #92400e;"><strong>⚠️ {% trans "Accessories:" %}</strong> {{ device.accessories }}</p>
             {% endif %}
         </div>
 
@@ -20,22 +21,22 @@
             {% csrf_token %}
 
             <div class="form-group">
-                <label for="id_status">Status *</label>
+                <label for="id_status">{% trans "Status" %} *</label>
                 {{ form.status }}
             </div>
 
             <div class="form-group">
-                <label for="id_repairer_name">Repairer Name</label>
+                <label for="id_repairer_name">{% trans "Repairer Name" %}</label>
                 {{ form.repairer_name }}
             </div>
 
             <div class="form-group">
-                <label for="id_repair_notes">Repair Notes / Solution</label>
+                <label for="id_repair_notes">{% trans "Repair Notes / Solution" %}</label>
                 {{ form.repair_notes }}
             </div>
 
-            <button type="submit" class="btn btn-primary">Save Changes</button>
-            <a href="{% url 'device_detail' device.device_id %}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">{% trans "Save Changes" %}</button>
+            <a href="{% url 'device_detail' device.device_id %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
         </form>
     </div>
 </div>

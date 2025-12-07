@@ -1,6 +1,7 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,18 +18,27 @@
             </div>
             {% if user.is_authenticated %}
             <nav>
-                <a href="{% url 'dashboard' %}" {% if request.path == '/' %}class="active"{% endif %}>Dashboard</a>
-                <a href="{% url 'device_intake' %}" {% if 'intake' in request.path %}class="active"{% endif %}>New Intake</a>
-                <a href="{% url 'repair_station' %}" {% if 'repair-station' in request.path %}class="active"{% endif %}>Repair Station</a>
-                <a href="{% url 'reminders' %}" {% if 'reminders' in request.path %}class="active"{% endif %}>Reminders</a>
+                <a href="{% url 'dashboard' %}" {% if request.path == '/' %}class="active"{% endif %}>{% trans "Dashboard" %}</a>
+                <a href="{% url 'device_intake' %}" {% if 'intake' in request.path %}class="active"{% endif %}>{% trans "New Intake" %}</a>
+                <a href="{% url 'repair_station' %}" {% if 'repair-station' in request.path %}class="active"{% endif %}>{% trans "Repair Station" %}</a>
+                <a href="{% url 'reminders' %}" {% if 'reminders' in request.path %}class="active"{% endif %}>{% trans "Reminders" %}</a>
                 {% if user.is_admin %}
-                <a href="{% url 'user_list' %}" {% if 'users' in request.path %}class="active"{% endif %}>Users</a>
+                <a href="{% url 'user_list' %}" {% if 'users' in request.path %}class="active"{% endif %}>{% trans "Users" %}</a>
                 {% endif %}
             </nav>
             <div class="user-info">
                 <span class="user-name">{{ user.get_full_name|default:user.username }}</span>
-                <span class="user-role">{% if user.is_admin %}Admin{% else %}Operator{% endif %}</span>
-                <a href="{% url 'logout' %}" class="btn-logout">Logout</a>
+                <span class="user-role">{% if user.is_admin %}{% trans "Admin" %}{% else %}{% trans "Operator" %}{% endif %}</span>
+                <form action="{% url 'set_language' %}" method="post" class="language-switcher">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ request.path }}">
+                    <select name="language" onchange="this.form.submit()" class="language-select">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        <option value="nl" {% if LANGUAGE_CODE == 'nl' %}selected{% endif %}>NL</option>
+                        <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>EN</option>
+                    </select>
+                </form>
+                <a href="{% url 'logout' %}" class="btn-logout">{% trans "Logout" %}</a>
             </div>
             {% endif %}
         </div>

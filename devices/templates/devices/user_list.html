@@ -1,12 +1,13 @@
 {% extends 'devices/base.html' %}
+{% load i18n %}
 
-{% block title %}User Management - Repair Café{% endblock %}
+{% block title %}{% trans "User Management" %} - Repair Café{% endblock %}
 
 {% block content %}
 <div class="container">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        <h2>User Management</h2>
-        <a href="{% url 'user_create' %}" class="btn btn-primary">Create New User</a>
+        <h2>{% trans "User Management" %}</h2>
+        <a href="{% url 'user_create' %}" class="btn btn-primary">{% trans "Create New User" %}</a>
     </div>
 
     <div class="card">
@@ -14,12 +15,12 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Username</th>
-                    <th>Full Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Status</th>
-                    <th>Actions</th>
+                    <th>{% trans "Username" %}</th>
+                    <th>{% trans "Full Name" %}</th>
+                    <th>{% trans "Email" %}</th>
+                    <th>{% trans "Role" %}</th>
+                    <th>{% trans "Status" %}</th>
+                    <th>{% trans "Actions" %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,22 +31,22 @@
                     <td>{{ user_obj.email|default:"—" }}</td>
                     <td>
                         {% if user_obj.is_admin %}
-                        <span class="status-badge status-admin">Admin</span>
+                        <span class="status-badge status-admin">{% trans "Admin" %}</span>
                         {% else %}
-                        <span class="status-badge status-operator">Operator</span>
+                        <span class="status-badge status-operator">{% trans "Operator" %}</span>
                         {% endif %}
                     </td>
                     <td>
                         {% if user_obj.is_active %}
-                        <span class="status-badge status-open">Active</span>
+                        <span class="status-badge status-open">{% trans "Active" %}</span>
                         {% else %}
-                        <span class="status-badge status-not_repaired">Inactive</span>
+                        <span class="status-badge status-not_repaired">{% trans "Inactive" %}</span>
                         {% endif %}
                     </td>
                     <td>
-                        <a href="{% url 'user_edit' user_obj.id %}" class="btn btn-secondary">Edit</a>
+                        <a href="{% url 'user_edit' user_obj.id %}" class="btn btn-secondary">{% trans "Edit" %}</a>
                         {% if user_obj.id != user.id %}
-                        <a href="{% url 'user_delete' user_obj.id %}" class="btn btn-secondary" style="background-color: #dc3545;">Delete</a>
+                        <a href="{% url 'user_delete' user_obj.id %}" class="btn btn-secondary" style="background-color: #dc3545;">{% trans "Delete" %}</a>
                         {% endif %}
                     </td>
                 </tr>
@@ -53,7 +54,7 @@
             </tbody>
         </table>
         {% else %}
-        <p style="padding: 20px;">No users found.</p>
+        <p style="padding: 20px;">{% trans "No users found." %}</p>
         {% endif %}
     </div>
 </div>

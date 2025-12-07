@@ -1,32 +1,33 @@
 {% extends 'devices/base.html' %}
+{% load i18n %}
 
-{% block title %}Delete User - Repair Café{% endblock %}
+{% block title %}{% trans "Delete User" %} - Repair Café{% endblock %}
 
 {% block content %}
 <div class="container" style="max-width: 600px;">
-    <h2 class="card-header">Delete User</h2>
+    <h2 class="card-header">{% trans "Delete User" %}</h2>
 
     <div class="card">
         <div class="alert alert-warning">
-            <strong>Warning!</strong> Are you sure you want to delete this user?
+            <strong>{% trans "Warning!" %}</strong> {% trans "Are you sure you want to delete this user?" %}
         </div>
 
         <div style="padding: 20px;">
-            <p><strong>Username:</strong> {{ user_obj.username }}</p>
-            <p><strong>Full Name:</strong> {{ user_obj.get_full_name|default:"—" }}</p>
-            <p><strong>Email:</strong> {{ user_obj.email|default:"—" }}</p>
-            <p><strong>Role:</strong> {% if user_obj.is_admin %}Admin{% else %}Operator{% endif %}</p>
+            <p><strong>{% trans "Username:" %}</strong> {{ user_obj.username }}</p>
+            <p><strong>{% trans "Full Name:" %}</strong> {{ user_obj.get_full_name|default:"—" }}</p>
+            <p><strong>{% trans "Email:" %}</strong> {{ user_obj.email|default:"—" }}</p>
+            <p><strong>{% trans "Role:" %}</strong> {% if user_obj.is_admin %}{% trans "Admin" %}{% else %}{% trans "Operator" %}{% endif %}</p>
 
             <p style="margin-top: 20px; color: #dc3545;">
-                This action cannot be undone. All data associated with this user will be affected.
+                {% trans "This action cannot be undone. All data associated with this user will be affected." %}
             </p>
         </div>
 
         <form method="post" style="padding: 0 20px 20px;">
             {% csrf_token %}
             <div style="display: flex; gap: 10px;">
-                <button type="submit" class="btn btn-primary" style="background-color: #dc3545;">Delete User</button>
-                <a href="{% url 'user_list' %}" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary" style="background-color: #dc3545;">{% trans "Delete User" %}</button>
+                <a href="{% url 'user_list' %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
             </div>
         </form>
     </div>

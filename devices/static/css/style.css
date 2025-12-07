@@ -399,6 +399,35 @@ nav a.active {
     background-color: var(--gray-800);
 }
 
+/* Language Switcher */
+.language-switcher {
+    display: inline-block;
+    margin: 0;
+}
+
+.language-select {
+    padding: 4px 8px;
+    border: 1px solid var(--gray-300);
+    border-radius: 4px;
+    background-color: white;
+    color: var(--gray-800);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    min-width: 50px;
+}
+
+.language-select:hover {
+    border-color: var(--primary-color);
+}
+
+.language-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
 /* Status badges for roles */
 .status-admin {
     background-color: #fef3c7;
