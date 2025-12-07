@@ -16,35 +16,7 @@
         <div class="device-id-large">{{ device.device_id }}</div>
 
         <div class="barcode-placeholder">
-            <svg width="250" height="60" xmlns="http://www.w3.org/2000/svg">
-                <!-- Simple barcode representation -->
-                <rect x="0" y="0" width="5" height="60" fill="black"/>
-                <rect x="10" y="0" width="3" height="60" fill="black"/>
-                <rect x="18" y="0" width="7" height="60" fill="black"/>
-                <rect x="30" y="0" width="3" height="60" fill="black"/>
-                <rect x="38" y="0" width="5" height="60" fill="black"/>
-                <rect x="48" y="0" width="8" height="60" fill="black"/>
-                <rect x="61" y="0" width="3" height="60" fill="black"/>
-                <rect x="69" y="0" width="5" height="60" fill="black"/>
-                <rect x="79" y="0" width="3" height="60" fill="black"/>
-                <rect x="87" y="0" width="7" height="60" fill="black"/>
-                <rect x="99" y="0" width="5" height="60" fill="black"/>
-                <rect x="109" y="0" width="3" height="60" fill="black"/>
-                <rect x="117" y="0" width="8" height="60" fill="black"/>
-                <rect x="130" y="0" width="3" height="60" fill="black"/>
-                <rect x="138" y="0" width="5" height="60" fill="black"/>
-                <rect x="148" y="0" width="7" height="60" fill="black"/>
-                <rect x="160" y="0" width="3" height="60" fill="black"/>
-                <rect x="168" y="0" width="5" height="60" fill="black"/>
-                <rect x="178" y="0" width="8" height="60" fill="black"/>
-                <rect x="191" y="0" width="3" height="60" fill="black"/>
-                <rect x="199" y="0" width="5" height="60" fill="black"/>
-                <rect x="209" y="0" width="3" height="60" fill="black"/>
-                <rect x="217" y="0" width="7" height="60" fill="black"/>
-                <rect x="229" y="0" width="5" height="60" fill="black"/>
-                <rect x="239" y="0" width="3" height="60" fill="black"/>
-                <text x="125" y="75" text-anchor="middle" font-size="12">{{ device.device_id }}</text>
-            </svg>
+            <img src="{{ barcode_image }}" alt="Barcode for {{ device.device_id }}" style="max-width: 100%; height: auto;">
         </div>
 
         <div style="margin-top: 20px; text-align: left;">

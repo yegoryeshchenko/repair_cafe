@@ -20,10 +20,8 @@
             <nav>
                 <a href="{% url 'dashboard' %}" {% if request.path == '/' %}class="active"{% endif %}>{% trans "Dashboard" %}</a>
                 <a href="{% url 'device_intake' %}" {% if 'intake' in request.path %}class="active"{% endif %}>{% trans "New Intake" %}</a>
+                <a href="{% url 'repair_station' %}" {% if 'repair-station' in request.path %}class="active"{% endif %}>{% trans "Repair Station" %}</a>
                 <a href="{% url 'reminders' %}" {% if 'reminders' in request.path %}class="active"{% endif %}>{% trans "Reminders" %}</a>
-                {% if user.is_admin %}
-                <a href="{% url 'user_list' %}" {% if 'users' in request.path %}class="active"{% endif %}>{% trans "Users" %}</a>
-                {% endif %}
             </nav>
             <div class="user-info">
                 <span class="user-name">{{ user.get_full_name|default:user.username }}</span>

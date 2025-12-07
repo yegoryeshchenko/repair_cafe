@@ -6,6 +6,7 @@ from django.db.models import Q
 from django.utils import timezone
 from .models import Device, User
 from .forms import DeviceIntakeForm, DeviceRepairForm, DeviceSearchForm, UserCreateForm, UserEditForm
+from .barcode_utils import generate_barcode_base64
 
 
 def admin_required(function):
@@ -169,7 +170,11 @@ def repair_station(request):
 def print_label(request, device_id):
     """Print label/ticket for device"""
     device = get_object_or_404(Device, device_id=device_id)
-    return render(request, 'devices/print_label.html', {'device': device})
+    barcode_image = generate_barcode_base64(device.device_id)
+    return render(request, 'devices/print_label.html', {
+        'device': device,
+        'barcode_image': barcode_image,
+    })
 
 
 @login_required

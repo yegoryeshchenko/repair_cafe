@@ -14,10 +14,4 @@ urlpatterns = [
     path('device/<str:device_id>/print/', views.print_label, name='print_label'),
     path('repair-station/', views.repair_station, name='repair_station'),
     path('reminders/', views.reminders, name='reminders'),
-
-    # User Management (Admin Only)
-    path('users/', views.user_list, name='user_list'),
-    path('users/create/', views.user_create, name='user_create'),
-    path('users/<int:user_id>/edit/', views.user_edit, name='user_edit'),
-    path('users/<int:user_id>/delete/', views.user_delete, name='user_delete'),
 ]

@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-07 00:55+0000\n"
+"POT-Creation-Date: 2025-12-07 13:56+0000\n"
 "PO-Revision-Date: 2025-12-07 00:00+0000\n"
 "Last-Translator: Repair Café Team\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,27 +55,29 @@ msgid "New Intake"
 msgstr "Nieuwe Intake"
 
 #: devices/templates/devices/base.html:23
+#: devices/templates/devices/repair_station.html:4
+#: devices/templates/devices/repair_station.html:9
+msgid "Repair Station"
+msgstr "Reparatiestation"
+
+#: devices/templates/devices/base.html:24
 #: devices/templates/devices/reminders.html:4
 msgid "Reminders"
 msgstr "Herinneringen"
 
-#: devices/templates/devices/base.html:25
-msgid "Users"
-msgstr "Gebruikers"
-
-#: devices/templates/devices/base.html:30
+#: devices/templates/devices/base.html:28
 #: devices/templates/devices/user_confirm_delete.html:19
 #: devices/templates/devices/user_list.html:34
 msgid "Admin"
 msgstr "Beheerder"
 
-#: devices/templates/devices/base.html:30
+#: devices/templates/devices/base.html:28
 #: devices/templates/devices/user_confirm_delete.html:19
 #: devices/templates/devices/user_list.html:36
 msgid "Operator"
 msgstr "Operator"
 
-#: devices/templates/devices/base.html:40
+#: devices/templates/devices/base.html:38
 msgid "Logout"
 msgstr "Uitloggen"
 
@@ -180,7 +181,7 @@ msgid "Name:"
 msgstr "Naam:"
 
 #: devices/templates/devices/detail.html:18
-#: devices/templates/devices/print_label.html:52
+#: devices/templates/devices/print_label.html:24
 #: devices/templates/devices/repair_station.html:32
 msgid "Phone:"
 msgstr "Tel:"
@@ -219,7 +220,7 @@ msgid "Device Type:"
 msgstr "Type:"
 
 #: devices/templates/devices/detail.html:40
-#: devices/templates/devices/print_label.html:54
+#: devices/templates/devices/print_label.html:26
 #: devices/templates/devices/repair_station.html:44
 msgid "Brand/Model:"
 msgstr "Merk/Model:"
@@ -347,31 +348,31 @@ msgstr "Voer je wachtwoord in"
 msgid "Please login to access the system"
 msgstr "Log in om toegang te krijgen tot het systeem"
 
-#: devices/templates/devices/print_label.html:51
+#: devices/templates/devices/print_label.html:23
 #: devices/templates/devices/repair_station.html:31
 #: devices/templates/devices/update.html:12
 msgid "Customer:"
 msgstr "Klant:"
 
-#: devices/templates/devices/print_label.html:53
+#: devices/templates/devices/print_label.html:25
 #: devices/templates/devices/update.html:13
 msgid "Device:"
 msgstr "Apparaat:"
 
-#: devices/templates/devices/print_label.html:55
+#: devices/templates/devices/print_label.html:27
 msgid "Intake:"
 msgstr "Intake:"
 
-#: devices/templates/devices/print_label.html:59
+#: devices/templates/devices/print_label.html:31
 #: devices/templates/devices/repair_station.html:63
 msgid "ACCESSORIES:"
 msgstr "ACCESSOIRES:"
 
-#: devices/templates/devices/print_label.html:66
+#: devices/templates/devices/print_label.html:38
 msgid "Please attach this label to the device."
 msgstr "Bevestig dit label aan apparaat."
 
-#: devices/templates/devices/print_label.html:67
+#: devices/templates/devices/print_label.html:39
 msgid "Keep items together to prevent loss."
 msgstr "Houd items bij elkaar."
 
@@ -402,11 +403,6 @@ msgstr "Geen apparaten nodig aandacht!"
 #: devices/templates/devices/reminders.html:59
 msgid "All devices are within the acceptable timeframe."
 msgstr "Alle apparaten zijn op tijd."
-
-#: devices/templates/devices/repair_station.html:4
-#: devices/templates/devices/repair_station.html:9
-msgid "Repair Station"
-msgstr "Reparatiestation"
 
 #: devices/templates/devices/repair_station.html:14
 msgid "Search / Scan"
@@ -2028,3 +2024,6 @@ msgstr ""
 #: venv/lib/python3.14/site-packages/django/views/templates/default_urlconf.html:248
 msgid "Connect, get help, or contribute"
 msgstr ""
+
+#~ msgid "Users"
+#~ msgstr "Gebruikers"
