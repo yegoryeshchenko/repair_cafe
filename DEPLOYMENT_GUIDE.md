@@ -58,6 +58,10 @@ DB_PORT=5432
 # Domain settings
 ALLOWED_HOSTS=your-domain.com,www.your-domain.com,your-droplet-ip
 
+# Security Settings (False for HTTP, True for HTTPS)
+SESSION_COOKIE_SECURE=False
+CSRF_COOKIE_SECURE=False
+
 # Email settings (optional, for future notifications)
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
@@ -351,6 +355,10 @@ DB_PASSWORD=your-database-password
 DB_HOST=localhost
 DB_PORT=5432
 
+# Security Settings (False for HTTP, True for HTTPS)
+SESSION_COOKIE_SECURE=False
+CSRF_COOKIE_SECURE=False
+
 # Optional: Email settings
 # EMAIL_HOST=smtp.gmail.com
 # EMAIL_PORT=587
@@ -409,12 +417,17 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Security settings for production
 if not DEBUG:
-    SECURE_SSL_REDIRECT = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
+    # Only require secure cookies if explicitly set (for HTTPS)
+    SESSION_COOKIE_SECURE = get_env_variable('SESSION_COOKIE_SECURE', 'False') == 'True'
+    CSRF_COOKIE_SECURE = get_env_variable('CSRF_COOKIE_SECURE', 'False') == 'True'
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     X_FRAME_OPTIONS = 'DENY'
+    # Enable SSL redirect and HSTS only when using HTTPS
+    # SECURE_SSL_REDIRECT = True
+    # SECURE_HSTS_SECONDS = 31536000
+    # SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    # SECURE_HSTS_PRELOAD = True
 ```
 
 Save with `Ctrl+X`, then `Y`, then `Enter`.

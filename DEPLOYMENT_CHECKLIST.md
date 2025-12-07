@@ -211,6 +211,10 @@ DB_USER=repair_cafe_user
 DB_PASSWORD=etBxrGnAP0e*NJUX69s*
 DB_HOST=localhost
 DB_PORT=5432
+
+# Security Settings (False for HTTP, True for HTTPS)
+SESSION_COOKIE_SECURE=False
+CSRF_COOKIE_SECURE=False
 ```
 
 **Save:** Ctrl+X, then Y, then Enter
