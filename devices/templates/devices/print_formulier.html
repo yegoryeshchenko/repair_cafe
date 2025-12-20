@@ -1,5 +1,6 @@
 {% extends 'devices/base.html' %}
 {% load i18n %}
+{% load static %}
 
 {% block title %}{% trans "Print Form" %} - {{ device.device_id }}{% endblock %}
 
@@ -12,15 +13,18 @@
     </div>
 
     <div class="print-formulier" style="padding: 12px; font-family: Arial, sans-serif; font-size: 10px;">
-        <!-- Header with barcode inline -->
+        <!-- Header with logo and barcode inline -->
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; border-bottom: 2px solid #000; padding-bottom: 4px;">
-            <div>
+            <div style="flex: 1;">
                 <div style="font-size: 16px; font-weight: bold; margin: 0;">REPAIR CAFÉ</div>
+            </div>
+            <div style="flex: 0 0 auto; text-align: center; margin: 0 20px;">
+                <img src="{% static 'logo.png' %}" alt="Logo" class="header-logo" style="height: 45px; width: auto; filter: grayscale(100%);">
+            </div>
+            <div style="flex: 1; text-align: right;">
                 <div style="font-size: 14px; font-weight: bold; margin: 0;">{{ device.device_id }}</div>
                 <div style="font-size: 9px;">{% trans "Intake Date" %}: {{ device.intake_datetime|date:"d-m-Y H:i" }}</div>
-            </div>
-            <div style="text-align: right;">
-                <img src="{{ barcode_image }}" alt="Barcode" style="height: 28px; width: auto;">
+                <img src="{{ barcode_image }}" alt="Barcode" style="height: 28px; width: auto; margin-top: 2px;">
             </div>
         </div>
 
@@ -152,6 +156,11 @@
     /* Barcode size for print */
     img[alt="Barcode"] {
         height: 26px !important;
+    }
+
+    /* Logo size for print */
+    .header-logo {
+        height: 35px !important;
     }
 
     /* Compact spacing for print */
