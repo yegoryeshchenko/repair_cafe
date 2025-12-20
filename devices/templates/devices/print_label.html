@@ -7,6 +7,7 @@
 <div class="container">
     <div class="no-print" style="margin-bottom: 20px;">
         <button onclick="window.print()" class="btn btn-primary">{% trans "Print Label" %}</button>
+        <a href="{% url 'print_formulier' device.device_id %}" class="btn btn-primary">{% trans "Print A4 Form" %}</a>
         <a href="{% url 'dashboard' %}" class="btn btn-secondary">{% trans "Back to Dashboard" %}</a>
     </div>
 

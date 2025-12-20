@@ -69,6 +69,8 @@ class Device(models.Model):
     brand_model = models.CharField(max_length=200)
     problem_description = models.TextField()
     accessories = models.TextField(blank=True, help_text="List of accessories brought with the device")
+    work_material_costs = models.TextField(blank=True, help_text="Work and material costs")
+    investigation_cost_paid = models.BooleanField(default=False, help_text="Investigation cost paid")
 
     # Repair information
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='open')
@@ -125,7 +127,7 @@ class Device(models.Model):
         delta = end_date - self.intake_datetime
         return delta.days
 
-    def needs_reminder(self, days_threshold=14):
+    def needs_reminder(self, days_threshold=7):
         """Check if device needs a reminder (been in system too long)"""
         if self.status in ['repaired', 'not_repaired', 'free_for_recycling']:
             return False

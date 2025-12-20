@@ -16,6 +16,8 @@ class DeviceIntakeForm(forms.ModelForm):
             'brand_model',
             'problem_description',
             'accessories',
+            'work_material_costs',
+            'investigation_cost_paid',
         ]
         widgets = {
             'customer_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Customer Name'}),
@@ -23,8 +25,10 @@ class DeviceIntakeForm(forms.ModelForm):
             'email_address': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'email@example.com'}),
             'device_type': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'e.g., Laptop, Phone, Tablet'}),
             'brand_model': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'e.g., Apple MacBook Pro 2020'}),
-            'problem_description': forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'placeholder': 'Describe the problem...'}),
-            'accessories': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'List any accessories (charger, case, etc.)'}),
+            'problem_description': forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'placeholder': 'Duidelijk omschriving van de klacht/verstoring'}),
+            'accessories': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Lijst van alle accessoires (slangen, kabels, voeding, etc.)'}),
+            'work_material_costs': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Werkzamheden / materiaalkosten'}),
+            'investigation_cost_paid': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
 
 

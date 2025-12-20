@@ -178,6 +178,17 @@ def print_label(request, device_id):
 
 
 @login_required
+def print_formulier(request, device_id):
+    """Print A4 form for device"""
+    device = get_object_or_404(Device, device_id=device_id)
+    barcode_image = generate_barcode_base64(device.device_id)
+    return render(request, 'devices/print_formulier.html', {
+        'device': device,
+        'barcode_image': barcode_image,
+    })
+
+
+@login_required
 def reminders(request):
     """View devices that need reminders"""
     all_active_devices = Device.objects.filter(
