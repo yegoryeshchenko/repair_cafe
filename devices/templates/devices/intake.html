@@ -53,11 +53,14 @@
             </div>
 
             <div class="form-group">
-                <div class="form-check" style="display: flex; align-items: center;">
-                    {{ form.investigation_cost_paid }}
-                    <label class="form-check-label" for="id_investigation_cost_paid" style="margin-left: 8px; margin-bottom: 0;">
-                        {% trans "Investigation Cost Paid" %}
-                    </label>
+                <label style="font-weight: bold; margin-bottom: 8px;">{% trans "Investigation Cost Paid" %}</label>
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    {% for radio in form.investigation_cost_paid %}
+                        <label class="form-check-label" style="display: flex; align-items: center; margin-bottom: 0;">
+                            {{ radio.tag }}
+                            <span style="margin-left: 5px;">{{ radio.choice_label }}</span>
+                        </label>
+                    {% endfor %}
                 </div>
             </div>
 

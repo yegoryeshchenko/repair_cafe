@@ -28,7 +28,7 @@ class DeviceIntakeForm(forms.ModelForm):
             'problem_description': forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'placeholder': 'Duidelijk omschriving van de klacht/verstoring'}),
             'accessories': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Lijst van alle accessoires (slangen, kabels, voeding, etc.)'}),
             'work_material_costs': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Werkzamheden / materiaalkosten'}),
-            'investigation_cost_paid': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'investigation_cost_paid': forms.RadioSelect(choices=[(True, 'Ja'), (False, 'Nee')], attrs={'class': 'form-check-input'}),
         }
 
 
