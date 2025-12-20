@@ -9,7 +9,7 @@
 
     {% if reminder_count > 0 %}
     <div class="alert alert-warning">
-        <strong>⚠️ {{ reminder_count }}</strong> {% trans "device(s) need attention (in system > 14 days)." %}
+        <strong>⚠️ {{ reminder_count }}</strong> {% trans "device(s) need attention (in system > 7 days)." %}
         <a href="{% url 'reminders' %}">{% trans "View reminders" %}</a>
     </div>
     {% endif %}

@@ -86,8 +86,8 @@ msgid "Device Dashboard"
 msgstr "Dashboard"
 
 #: devices/templates/devices/dashboard.html:12
-msgid "device(s) need attention (in system > 14 days)."
-msgstr "apparaten nodig aandacht (> 14 dagen in systeem)."
+msgid "device(s) need attention (in system > 7 days)."
+msgstr "apparaten nodig aandacht (> 7 dagen in systeem)."
 
 #: devices/templates/devices/dashboard.html:13
 msgid "View reminders"
@@ -242,7 +242,7 @@ msgstr "Niet toegewezen"
 #: devices/templates/devices/detail.html:54
 #: devices/templates/devices/intake.html:40
 msgid "Problem Description"
-msgstr "Probleem"
+msgstr "Omschrijving van de defect*"
 
 #: devices/templates/devices/detail.html:62
 #: devices/templates/devices/intake.html:45
@@ -278,7 +278,7 @@ msgstr "Intake"
 
 #: devices/templates/devices/intake.html:9
 msgid "New Device Intake"
-msgstr "Nieuwe Intake"
+msgstr "Nieuwe reparatie"
 
 #: devices/templates/devices/intake.html:15
 msgid "Customer Name"
@@ -294,22 +294,34 @@ msgstr "E-mail"
 
 #: devices/templates/devices/intake.html:30
 msgid "Device Type"
-msgstr "Type"
+msgstr "Soort Apparaat"
 
 #: devices/templates/devices/intake.html:35
 msgid "Brand / Model"
-msgstr "Merk / Model"
+msgstr "Type/model"
 
 #: devices/templates/devices/intake.html:47
 msgid ""
 "List any accessories brought with the device (charger, case, cables, etc.)"
 msgstr ""
 
-#: devices/templates/devices/intake.html:50
+#: devices/templates/devices/intake.html:51
+msgid "Work / Material Costs"
+msgstr "Werkzamheden / materiaalkosten"
+
+#: devices/templates/devices/intake.html:59
+msgid "Investigation Cost Paid"
+msgstr "Onderzoekskosten betaald"
+
+#: devices/templates/devices/intake.html:62
+msgid "Investigation costs"
+msgstr "Kosten"
+
+#: devices/templates/devices/intake.html:65
 msgid "Register Device"
 msgstr "Registreren"
 
-#: devices/templates/devices/intake.html:51
+#: devices/templates/devices/intake.html:66
 #: devices/templates/devices/update.html:39
 #: devices/templates/devices/user_confirm_delete.html:30
 #: devices/templates/devices/user_form.html:90
@@ -376,15 +388,52 @@ msgstr "Bevestig dit label aan apparaat."
 msgid "Keep items together to prevent loss."
 msgstr "Houd items bij elkaar."
 
+#: devices/templates/devices/print_label.html:10
+msgid "Print A4 Form"
+msgstr "Print A4 Formulier"
+
+#: devices/templates/devices/print_formulier.html:4
+msgid "Print Form"
+msgstr "Print Formulier"
+
+#: devices/templates/devices/print_formulier.html:10
+msgid "Print Label Instead"
+msgstr "Print Label"
+
+#: devices/templates/devices/print_formulier.html:18
+msgid "Repair Form"
+msgstr "Reparatieformulier"
+
+#: devices/templates/devices/print_formulier.html:117
+msgid "To be filled by repairer"
+msgstr "In te vullen door reparateur"
+
+#: devices/templates/devices/print_formulier.html:124
+msgid "Signatures"
+msgstr "Handtekeningen"
+
+#: devices/templates/devices/print_formulier.html:128
+msgid "Customer Signature:"
+msgstr "Handtekening klant:"
+
+#: devices/templates/devices/print_formulier.html:130
+#: devices/templates/devices/print_formulier.html:135
+msgid "Date:"
+msgstr "Datum:"
+
+#: devices/templates/devices/print_formulier.html:133
+msgid "Repairer Signature:"
+msgstr "Handtekening reparateur:"
+
 #: devices/templates/devices/reminders.html:9
 msgid "Devices Needing Attention"
 msgstr "Aandacht Nodig"
 
 #: devices/templates/devices/reminders.html:11
 msgid ""
-"Devices that have been in the system for more than 14 days and are not yet "
+"Devices that have been in the system for more than 7 days and are not yet "
 "finished."
-msgstr ""
+msgstr "Apparaten die langer dan 7 dagen in het systeem zitten en nog niet klaar zijn."
 
 #: devices/templates/devices/reminders.html:20
 msgid "Phone"
@@ -426,7 +475,7 @@ msgstr "Afgerond:"
 
 #: devices/templates/devices/repair_station.html:57
 msgid "Problem Description:"
-msgstr "Probleem:"
+msgstr "Omschrijving van de defect*:"
 
 #: devices/templates/devices/repair_station.html:70
 msgid "Repair Notes:"

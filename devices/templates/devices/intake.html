@@ -47,6 +47,20 @@
                 <small style="color: #666;">{% trans "List any accessories brought with the device (charger, case, cables, etc.)" %}</small>
             </div>
 
+            <div class="form-group">
+                <label for="id_work_material_costs">{% trans "Work / Material Costs" %}</label>
+                {{ form.work_material_costs }}
+            </div>
+
+            <div class="form-group">
+                <div class="form-check" style="display: flex; align-items: center;">
+                    {{ form.investigation_cost_paid }}
+                    <label class="form-check-label" for="id_investigation_cost_paid" style="margin-left: 8px; margin-bottom: 0;">
+                        {% trans "Investigation Cost Paid" %}
+                    </label>
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-primary">{% trans "Register Device" %}</button>
             <a href="{% url 'dashboard' %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
         </form>

@@ -12,6 +12,7 @@ urlpatterns = [
     path('device/<str:device_id>/', views.device_detail, name='device_detail'),
     path('device/<str:device_id>/update/', views.device_update, name='device_update'),
     path('device/<str:device_id>/print/', views.print_label, name='print_label'),
+    path('device/<str:device_id>/print-formulier/', views.print_formulier, name='print_formulier'),
     path('repair-station/', views.repair_station, name='repair_station'),
     path('reminders/', views.reminders, name='reminders'),
 ]
