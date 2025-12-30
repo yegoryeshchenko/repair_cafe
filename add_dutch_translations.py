@@ -57,8 +57,8 @@ translations = {
     # Status choices
     "Open": "Open",
     "In Progress": "Bezig",
-    "Repaired": "Gerepareerd",
-    "Not Repaired": "Niet Gerepareerd",
+    "Repaired": "Opgelost",
+    "Not Repaired": "Niet te repareren",
     "Free for Recycling": "Voor Recycling",
 
     # Intake page

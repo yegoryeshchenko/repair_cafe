@@ -27,11 +27,11 @@ msgstr "Bezig"
 
 #: devices/models.py:44
 msgid "Repaired"
-msgstr "Gerepareerd"
+msgstr "Opgelost"
 
 #: devices/models.py:45
 msgid "Not Repaired"
-msgstr "Niet Gerepareerd"
+msgstr "Niet te repareren"
 
 #: devices/models.py:46
 msgid "Free for Recycling"
